@@ -7,5 +7,5 @@ RUN wget http://jeroen.github.io/images/testocr.png
 # Make paddle pre-download models
 RUN paddleocr --image_dir ./testocr.png --use_angle_cls true --lang en --use_gpu false
 
-COPY load_image.py load_image.py
-CMD python load_image.py
+COPY process_image.py process_image.py
+CMD python process_image.py
