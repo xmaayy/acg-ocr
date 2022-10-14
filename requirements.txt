@@ -1,0 +1,6 @@
+psutil
+paddlepaddle
+paddleocr
+opencv-python
+numpy
+flask

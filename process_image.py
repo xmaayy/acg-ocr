@@ -1,12 +1,33 @@
-import cv2
 from time import time
+import subprocess
 import logging
-import numpy as np
+
 from paddleocr import PaddleOCR, draw_ocr
-from flask import Flask, request
+from flask import Flask, request, jsonify
+import numpy as np
+import psutil
+import cv2
 
 app = Flask(__name__)
 ocr = PaddleOCR(use_angle_cls=True, lang='en')
+
+@app.route("/health_check", methods=["GET"])
+def health_check():
+    """
+    Return stats about the server
+    """
+    # Runs the subprocess command to get the live git commit hash
+    GIT_HASH = subprocess.check_output(["git", "rev-parse", "HEAD"]).decode().strip()
+    cpu_usage = psutil.cpu_percent()  # Gets average CPU usage since last call
+    total_memory = psutil.virtual_memory().total
+    available_memory = psutil.virtual_memory().available
+    response = {
+        "cpuPercentUsage": f"{cpu_usage}%",
+        "totalMemory": f"{round(total_memory / (1024*1024))}MB",
+        "availableMemory": f"{round(available_memory / (1024*1024))}MB",
+        "gitCommitHash": GIT_HASH,
+    }
+    return jsonify(response)
 
 @app.route('/upload', methods=["POST"])
 def upload():
