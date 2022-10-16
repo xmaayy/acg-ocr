@@ -58,4 +58,4 @@ def upload():
         raise Exception(f"Counldn't process :( {err}")
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=80)
+    app.run()
