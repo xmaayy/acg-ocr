@@ -4,7 +4,7 @@ files:
   - source: /
     destination: /home/ec2-user/acg-ocr/
   - source: /acg-ocr.service
-    destination: /etc/systemd/system
+    destination: /etc/systemd/system/acg-ocr.service
 hooks:
   AfterInstall:
     - location: scripts/install_dependencies.sh
