@@ -1,4 +1,10 @@
 #!/bin/bash
+
+# Get the code
+cd /home/ec2-user
+git clone https://github.com/xmaayy/acg-ocr.git
+
+# Install some stuff
 cd /home/ec2-user/acg-ocr
 sudo cp nginx.conf /etc/nginx/nginx.conf
 python3 -m pip install -r /home/ec2-user/acg-ocr/requirements.txt
