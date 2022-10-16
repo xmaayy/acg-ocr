@@ -1,19 +1,23 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /var/www/html/
+  - source: /
+    destination: /home/ec2-user/acg-ocr/
+  - source: /acg-ocr.service
+    destination: /etc/systemd/system
 hooks:
-  BeforeInstall:
+  AfterInstall:
     - location: scripts/install_dependencies.sh
       timeout: 300
       runas: root
     - location: scripts/start_server.sh
       timeout: 300
       runas: root
-  AfterInstall:
-    - 
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 10
+      runas: ec2-user
   ApplicationStop:
-    - location: scripts/stop_server.sh
-      timeout: 300
+    - location: scripts/application_stop.sh
+      timeout: 10
       runas: root

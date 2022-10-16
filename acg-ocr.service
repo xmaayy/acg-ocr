@@ -1,13 +1,12 @@
 [Unit]
 Description=Service for the OCR app
 After=network.target
-StartLimitIntervalSec=0
 
 [Service]
 Type=simple
 Restart=always
 RestartSec=1
-User=centos
+User=ec2-user
 ExecStart=/home/ec2-user/acg-ocr/scripts/run_app.sh
 
 [Install]
