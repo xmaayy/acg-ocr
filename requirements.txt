@@ -1,6 +1,9 @@
+wheel
 psutil
 paddlepaddle
 paddleocr
 opencv-python
 numpy
 flask
+gunicorn
+
