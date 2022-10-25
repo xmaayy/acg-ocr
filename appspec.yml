@@ -7,11 +7,12 @@ files:
   - source: /acg-ocr.service
     destination: /etc/systemd/system/
     overwrite: true
+file_exists_behavior: OVERWRITE
 hooks:
   AfterInstall:
     - location: scripts/post_install.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
   ApplicationStart:
     - location: scripts/application_start.sh
       timeout: 10
@@ -19,4 +20,4 @@ hooks:
   ApplicationStop:
     - location: scripts/application_stop.sh
       timeout: 10
-      runas: root
+      runas: ec2-user
