@@ -26,6 +26,7 @@ def health_check():
         "totalMemory": f"{round(total_memory / (1024*1024))}MB",
         "availableMemory": f"{round(available_memory / (1024*1024))}MB",
         "gitCommitHash": GIT_HASH,
+        "Another":"param",
     }
     return jsonify(response)
 
